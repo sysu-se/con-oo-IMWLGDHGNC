@@ -59,7 +59,7 @@ export class Sudoku {
         this.grid[row][col] = EMPTY;
 
         if (value !== EMPTY) {
-            assert(this.#isValueAllowed(row, col, value), `move violates Sudoku rule at (${row}, ${col})`);
+            assert(this.isValueAllowed(row, col, value), `move violates Sudoku rule at (${row}, ${col})`);
         }
 
         this.grid[row][col] = value;
@@ -85,7 +85,7 @@ export class Sudoku {
         return this.grid.map((row) => row.join(' ')).join('\n');
     }
 
-    #isValueAllowed(targetRow, targetCol, value) {
+    isValueAllowed(targetRow, targetCol, value) {
         for (let col = 0; col < BOARD_SIZE; col += 1) {
             if (this.grid[targetRow][col] === value) {
                 return false;
